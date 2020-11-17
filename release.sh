@@ -1,22 +1,10 @@
 #!/bin/bash
-set -e
+VERSION=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 12)
 
-if [ $# -ne 1 ]; then
-    echo "Provide version as the first argument (patch, minor, major etc.)"
-    exit 2
-fi
-
-VERSION=$1
-
-# Publish NPM package
-yarn publish "--$VERSION"
-git push --follow-tags
-
-# Publish gh-pages
-git checkout gh-pages
-git reset --hard master
-git add -f build
-git commit -m "Add distributable files for latest version"
-git push -f
+git checkout -b build || git checkout build
+make
+git add -f ./build
+git commit -m "approach0 build: $VERSION"
+git tag "$VERSION"
+git push --tags origin build
 git checkout -
-
