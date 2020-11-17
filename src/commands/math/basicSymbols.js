@@ -545,3 +545,6 @@ LatexCmds['÷'] = LatexCmds.div = LatexCmds.divide = LatexCmds.divides =
   bind(BinaryOperator,'\\div ','&divide;', '[/]');
 
 CharCmds['~'] = LatexCmds.sim = bind(BinaryOperator, '\\sim ', '~', '~');
+
+LatexCmds['mod'] = LatexCmds.mod = bind(BinaryOperator, '\\mod ', 'mod', '[mod]');
+LatexCmds['pmod'] = LatexCmds.pmod = bind(BinaryOperator, '\\pmod ', 'mod', '[mod]');
