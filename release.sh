@@ -1,7 +1,7 @@
 #!/bin/bash
 VERSION=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 12)
 
-git checkout -b build || git checkout build
+git checkout -b build-$VERSION
 make
 git add -f ./build
 git commit -m "approach0 build: $VERSION"
